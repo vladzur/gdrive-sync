@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Interfaz de línea de comandos de `gdrive-sync`.
 //!
 //! En el Hito 0 solo valida la definición de la CLI y la configuración de logs.

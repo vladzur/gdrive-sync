@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Motor de sincronización (RF-05, RF-06).
 //!
 //! Implementa la matriz de decisión de ADR-001 como función pura, el

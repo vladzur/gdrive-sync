@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Dominio compartido de `gdrive-sync`.
 //!
 //! Este crate no depende de GTK, de la red ni de la base de datos: contiene los

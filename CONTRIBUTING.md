@@ -54,3 +54,20 @@ scripts/measure-resources.sh -n gdrive-sync-daemon -d 60
 
 Se mide **RSS** (criterio) y **PSS** (informativo, descuenta librerías
 compartidas). Cualquier PR que toque el motor debe adjuntar la medición.
+
+## Licencia de las contribuciones
+
+El proyecto se distribuye bajo `GPL-3.0-or-later` (ver [LICENSE](./LICENSE)).
+Al enviar un pull request se entiende que la contribución se licencia bajo los
+mismos términos; no se requiere firma de CLA.
+
+Todo archivo de código nuevo debe comenzar con el identificador SPDX:
+
+```rust
+// SPDX-License-Identifier: GPL-3.0-or-later
+```
+
+Al agregar una dependencia, verificar que su licencia sea compatible con
+GPL-3. Las licencias permisivas (MIT, Apache-2.0, ISC, BSD, Zlib) y
+LGPL-2.1-or-later son compatibles; `GPL-2.0-only` y las licencias propietarias
+no lo son.

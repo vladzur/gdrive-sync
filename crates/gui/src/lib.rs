@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Interfaz gráfica GTK4 / Libadwaita (RF-07, RNF-04).
 //!
 //! La GUI es un consumidor de estado: no contiene lógica de negocio ni accede a

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Instalación del proveedor criptográfico de `rustls`.
 //!
 //! El proyecto usa `reqwest` con la feature `rustls-no-provider` para no

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Monitoreo del sistema de archivos (RF-03).
 //!
 //! Usa `inotify` mediante `notify` y agrupa ráfagas con
