@@ -1,0 +1,21 @@
+[package]
+name = "gdrive-sync-auth"
+description = "OAuth 2.0 con PKCE y persistencia de tokens en Secret Service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+gdrive-sync-core = { workspace = true }
+oauth2 = { workspace = true }
+oo7 = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+
+[lints]
+workspace = true

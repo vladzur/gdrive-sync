@@ -1,0 +1,23 @@
+[package]
+name = "gdrive-sync-db"
+description = "Persistencia local en SQLite: nodos, cola de operaciones y conflictos"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+gdrive-sync-core = { workspace = true }
+rusqlite = { workspace = true }
+serde = { workspace = true }
+sha2 = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+rstest = { workspace = true }
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

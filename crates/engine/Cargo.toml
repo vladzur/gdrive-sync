@@ -1,0 +1,23 @@
+[package]
+name = "gdrive-sync-engine"
+description = "Motor de sincronización: reconciliación, planificador y ejecutor"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+gdrive-sync-core = { workspace = true }
+futures-util = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+mockall = { workspace = true }
+rstest = { workspace = true }
+
+[lints]
+workspace = true

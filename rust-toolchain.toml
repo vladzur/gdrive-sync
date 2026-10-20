@@ -1,0 +1,7 @@
+[toolchain]
+# Versión fijada para desarrollo y CI (reproducibilidad).
+# El MSRV soportado se declara en `Cargo.toml` (`rust-version = "1.92"`) y lo
+# verifica un job dedicado de CI con esa toolchain.
+channel = "1.99.1"
+components = ["rustfmt", "clippy"]
+profile = "default"

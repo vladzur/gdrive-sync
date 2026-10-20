@@ -1,0 +1,19 @@
+/target
+
+# Artefactos de base de datos y estado local
+*.db
+*.db-wal
+*.db-shm
+
+# Carpetas internas del sincronizador (se crean junto a la raíz sincronizada)
+.gdrive-sync-tmp/
+.gdrive-sync-trash/
+
+# Empaquetado
+.flatpak-builder/
+build-dir/
+*.flatpak
+
+# Entorno local
+.env
+*.local.toml

@@ -1,0 +1,80 @@
+# cargo-deny: licencias, avisos de seguridad, duplicados y orígenes.
+# Ejecutar con `cargo deny check`.
+
+[graph]
+targets = [{ triple = "x86_64-unknown-linux-gnu" }]
+
+[advisories]
+version = 2
+yanked = "warn"
+# Avisos aceptados de forma explícita. Los tres son de tipo `unmaintained`
+# (mantenimiento), no vulnerabilidades, y provienen del stack zbus 5.x que
+# `oo7` 0.6 exige: sus derive/helper crates se integraron en zbus 6.0, pero
+# `oo7` (0.6 y 0.7.0-beta) y `ksni` 0.3.6 siguen requiriendo `zbus ^5`.
+# Condición de salida: al migrar a zbus 6 (cuando `oo7` y `ksni` lo soporten)
+# estas entradas deben eliminarse (ADR-013).
+ignore = [
+    { id = "RUSTSEC-2026-0370", reason = "zbus_names 4.x: integrado en zbus 6; bloqueado por oo7 0.6 / ksni 0.3.6 que exigen zbus ^5" },
+    { id = "RUSTSEC-2026-0371", reason = "zvariant 5.x: integrado en zbus 6; bloqueado por oo7 0.6 / ksni 0.3.6 que exigen zbus ^5" },
+    { id = "RUSTSEC-2026-0372", reason = "zvariant_derive 5.x: integrado en zbus 6; bloqueado por oo7 0.6 / ksni 0.3.6 que exigen zbus ^5" },
+]
+
+[licenses]
+version = 2
+# Se permite una allowlist explícita: cualquier licencia nueva debe revisarse
+# antes de incorporar la dependencia.
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "CC0-1.0",
+    "ISC",
+    "MPL-2.0",
+    "Unicode-3.0",
+    "Unlicense",
+    "Zlib",
+]
+confidence-threshold = 0.93
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+highlight = "all"
+
+# Duplicados prohibidos (ADR-009, ADR-013). Si alguna de estas reglas falla,
+# NO se sube la versión: se corrige la causa raíz.
+[[bans.deny]]
+name = "reqwest"
+version = "<0.13"
+reason = "oauth2 5.0 debe usarse sin su feature reqwest (ADR-009)"
+
+[[bans.deny]]
+name = "zbus"
+version = ">=6"
+reason = "oo7 0.6 y ksni 0.3.6 requieren zbus ^5 (ADR-013)"
+
+# Se usa rustls con el proveedor `ring`. Prohibirlos mantiene el build sin
+# dependencias de sistema (cmake/nasm/openssl), requisito del sandbox Flatpak.
+[[bans.deny]]
+name = "aws-lc-rs"
+reason = "requiere cmake/nasm; usar el proveedor ring de rustls"
+
+[[bans.deny]]
+name = "openssl"
+reason = "se usa rustls; openssl exige headers del sistema"
+
+[[bans.deny]]
+name = "openssl-sys"
+reason = "se usa rustls; openssl exige headers del sistema"
+
+[[bans.deny]]
+name = "native-tls"
+reason = "se usa rustls con proveedor ring"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]

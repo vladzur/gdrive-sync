@@ -1,0 +1,11 @@
+# Configuración de lints que no se expresan en `[workspace.lints]`.
+# El MSRV también está en `Cargo.toml`; se repite aquí para herramientas que
+# solo leen este archivo.
+msrv = "1.92"
+
+# Umbrales ajustados para que la matriz de decisión y el planificador puedan
+# expresarse como funciones puras sin trocear la lógica artificialmente.
+cognitive-complexity-threshold = 25
+too-many-arguments-threshold = 7
+too-many-lines-threshold = 150
+type-complexity-threshold = 250

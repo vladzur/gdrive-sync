@@ -1,0 +1,20 @@
+[package]
+name = "gdrive-sync-cli"
+description = "Interfaz de línea de comandos de gdrive-sync"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "gdrive-sync"
+path = "src/main.rs"
+
+[dependencies]
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[lints]
+workspace = true
