@@ -18,7 +18,7 @@ jobs:
     name: Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # La toolchain sale de rust-toolchain.toml (fijada en el repositorio).
       - run: rustup show active-toolchain
       - run: cargo fmt --all --check
@@ -27,7 +27,7 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: rustup show active-toolchain
       - uses: Swatinem/rust-cache@v2
       - run: cargo clippy --workspace --all-targets -- -D warnings
@@ -36,7 +36,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: rustup show active-toolchain
       - uses: Swatinem/rust-cache@v2
       - run: cargo test --workspace
@@ -45,7 +45,7 @@ jobs:
     name: Build (release)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: rustup show active-toolchain
       - uses: Swatinem/rust-cache@v2
       - run: cargo build --workspace --release
@@ -54,7 +54,7 @@ jobs:
     name: MSRV (1.92)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install MSRV toolchain
         run: rustup toolchain install 1.92.0 --profile minimal
       - uses: Swatinem/rust-cache@v2
@@ -64,7 +64,7 @@ jobs:
     name: Duplicate dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: rustup show active-toolchain
       - uses: Swatinem/rust-cache@v2
       - run: ./scripts/check-duplicates.sh
@@ -73,7 +73,7 @@ jobs:
     name: Licenses and advisories
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: rustup show active-toolchain
       - uses: taiki-e/install-action@v2
         with:
@@ -81,13 +81,15 @@ jobs:
       - run: cargo deny check
 
   # Verifica que GTK4 y Libadwaita compilen juntos con las features elegidas
-  # (Anexo F del plan). El piso de API es gtk4 v4_14, que es lo que trae el
-  # runner de Ubuntu (GTK 4.14) y lo que exige GNOME 46.
+  # (Anexo F del plan). El piso de API es gtk4 v4_14 y el runner se fija en
+  # Ubuntu 24.04 a propósito: trae GTK 4.14, así que este job compila contra el
+  # mínimo soportado (GNOME 46). Con `ubuntu-latest` el piso dejaría de probarse
+  # en cuanto la etiqueta migre a una versión más nueva de la distro.
   gui:
     name: GUI dependencies (GTK4)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install GTK4 and Libadwaita development headers
         run: |
           sudo apt-get update
