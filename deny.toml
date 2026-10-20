@@ -36,6 +36,9 @@ allow = [
     "CC0-1.0",
     "GPL-3.0-or-later",
     "ISC",
+    # Transitiva de `dirs` 7 (`option-ext`). MPL-2.0 es compatible con GPL-3:
+    # sus obligaciones son a nivel de archivo y permite combinarse con GPL.
+    "MPL-2.0",
     "Unicode-3.0",
     "Unlicense",
     "Zlib",

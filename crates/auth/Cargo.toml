@@ -8,14 +8,21 @@ license.workspace = true
 authors.workspace = true
 
 [dependencies]
+base64 = { workspace = true }
 gdrive-sync-core = { workspace = true }
 oauth2 = { workspace = true }
 oo7 = { workspace = true }
 reqwest = { workspace = true }
 serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
 thiserror = { workspace = true }
 tokio = { workspace = true }
 tracing = { workspace = true }
+
+[dev-dependencies]
+tracing-subscriber = { workspace = true }
+wiremock = { workspace = true }
 
 [lints]
 workspace = true

@@ -50,6 +50,7 @@ reqwest = { version = "0.13.5", default-features = false, features = [
     "multipart",
     "http2",
     "gzip",
+    "query",
     "rustls-no-provider",
 ] }
 rustls = { version = "0.23", default-features = false, features = [
@@ -80,6 +81,12 @@ tracing = "0.1.44"
 tracing-subscriber = { version = "0.3.23", features = ["env-filter", "fmt"] }
 tracing-appender = "0.2.5"
 dirs = "7.0.0"
+
+# --- Seguridad y utilidades ---
+# `zeroize` borra los tokens de la memoria al soltarlos (ADR-011).
+zeroize = { version = "1.9", features = ["derive"] }
+toml = "1.1"
+base64 = "0.23"
 
 # --- Desarrollo ---
 tempfile = "3.27.0"
