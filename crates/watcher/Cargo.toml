@@ -1,0 +1,23 @@
+[package]
+name = "gdrive-sync-watcher"
+description = "Monitoreo del sistema de archivos con inotify y debounce"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+gdrive-sync-core = { workspace = true }
+notify = { workspace = true }
+notify-debouncer-full = { workspace = true }
+notify-types = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+
+[lints]
+workspace = true

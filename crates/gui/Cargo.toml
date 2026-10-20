@@ -1,0 +1,23 @@
+[package]
+name = "gdrive-sync-gui"
+description = "Interfaz gráfica GTK4 / Libadwaita"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+gdrive-sync-core = { workspace = true }
+# GTK y Libadwaita son opcionales para que el workspace compile sin librerías
+# de desarrollo instaladas (CI headless, servidores). Se activan con la feature
+# `gui`, que se verifica en un job dedicado de CI.
+gtk4 = { workspace = true, optional = true }
+libadwaita = { workspace = true, optional = true }
+
+[features]
+default = []
+gui = ["dep:gtk4", "dep:libadwaita"]
+
+[lints]
+workspace = true
