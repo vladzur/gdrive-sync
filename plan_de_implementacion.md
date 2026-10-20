@@ -898,7 +898,7 @@ El RFC declaraba estas versiones como "sugeridas". Todas se verificaron contra c
 | `gtk4` | 0.8 (`v4_12`) | **0.11.5** | 1.92 | `features = ["v4_14"]`. El *feature* de versión fija el **piso de API**: `v4_14` cubre GNOME 46+ (verificado en `gnome-build-meta`: 46→GTK 4.14.5, 47→4.16.13, 48→4.18.6, 49→4.20.4, 50→4.22.5, 51→4.24.1). Disponibles: `v4_2` … `v4_24` |
 | `libadwaita` | 0.6 (`v1_4`) | **0.9.2** | — | `features = ["v1_4"]`. Requiere `gtk4` 0.11 (compatible ✔). Disponibles: `v1_1` … `v1_10` y `gtk_v4_*` |
 | `tokio` | 1.35 | **1.53.3** | 1.71 | **No usar `features = ["full"]`**: declarar `["rt-multi-thread","macros","fs","io-util","sync","time","signal"]`. Reduce superficie y tamaño |
-| `reqwest` | 0.11 | **0.13.5** | 1.85 | `default-features = false`, `features = ["json","stream","multipart","http2","rustls","gzip"]`. ⚠️ **En 0.13 la feature TLS se llama `rustls`** (en 0.12 era `rustls-tls`). Conflicto con `oauth2`: ADR-009 |
+| `reqwest` | 0.11 | **0.13.5** | 1.85 | `default-features = false`, `features = ["json","stream","multipart","http2","gzip","query","rustls-no-provider"]` + `rustls` con proveedor `ring`. ⚠️ En 0.13 la feature TLS se llama `rustls` (en 0.12 era `rustls-tls`), pero **no se usa**: habilita `aws-lc-rs` (cmake/nasm). `query` es obligatoria para `.query()` en la API de Drive. Conflicto con `oauth2`: ADR-009 |
 | `oauth2` | 4.4 | **5.0.0** | 1.65 | `default-features = false` → evita arrastrar `reqwest` 0.12. Se usa `AsyncHttpClient` con el cliente propio (ADR-009) |
 | `oo7` | 0.2 | **0.6.0** | 1.92 | `features = ["tokio","native_crypto"]` (son las de defecto, se declaran explícitas por claridad). `native_crypto` usa RustCrypto y **evita OpenSSL** → decisivo en Flatpak |
 | `notify` | 6.1 | **8.2.0** | 1.77 | `features = []`. En notify 8 los tipos de evento viven en `notify-types` |
@@ -921,6 +921,9 @@ El RFC declaraba estas versiones como "sugeridas". Todas se verificaron contra c
 | `tokio-util` | — | **0.7.20** | 1.85 | `features = ["io","rt"]` → `CancellationToken`, `ReaderStream` |
 | `futures-util` | — | **0.3.34** | 1.71 | |
 | `gettext-rs` | — | **0.8.0** | — | i18n (T4.10). Trae `gettext-sys` (compila o enlaza gettext) |
+| `zeroize` | — | **1.9.1** | 1.85 | `features = ["derive"]`. Borra los tokens de la memoria al liberarlos (ADR-011) |
+| `toml` | — | **1.1.8** | 1.85 | Lectura de `config.toml` (credenciales OAuth del usuario) |
+| `base64` | — | **0.23.1** | 1.71 | Codificación del `code_challenge` PKCE (`BASE64URL`, sin relleno) |
 
 #### C.2 Dependencias de desarrollo
 

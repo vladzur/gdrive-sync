@@ -1,7 +1,11 @@
-# gdrive-sync
+# gdrive-sync-app
 
 Cliente nativo de Google Drive para Linux: sincronización bidireccional en
 tiempo real entre un directorio local y Google Drive.
+
+> `gdrive-sync-app` es el nombre visible de la aplicación (ventana, `.desktop` y
+> metadatos). El repositorio se llama `gdrive-sync` y los binarios conservan
+> `gdrive-sync` como nombre de comando.
 
 - **Stack:** Rust, GTK4 / Libadwaita, Tokio, SQLite, Google Drive API v3.
 - **Diseño:** [especificaci_n_t_cnica.md](./especificaci_n_t_cnica.md) (RFC).
@@ -9,13 +13,14 @@ tiempo real entre un directorio local y Google Drive.
 
 ## Estado
 
-Hito 0 completado: bootstrap del workspace, toolchain reproducible, lints,
-CI y scripts de medición. La funcionalidad llega en los hitos 1 a 5.
+Hitos 0 y 1 completados: workspace reproducible con CI, y núcleo de
+autenticación OAuth2 con PKCE, almacenamiento de tokens en el gestor de
+secretos y cliente REST de Drive.
 
 | Hito | Alcance | Estado |
 | --- | --- | --- |
 | H0 | Bootstrap, toolchain, CI | ✅ |
-| H1 | Núcleo CLI y OAuth2 (RF-01, RF-02) | pendiente |
+| H1 | Núcleo CLI y OAuth2 (RF-01, RF-02) | ✅ |
 | H2 | Persistencia y watcher (RF-03, RF-04) | pendiente |
 | H3 | Motor de sincronización (RF-05, RF-06) | pendiente |
 | H4 | GUI GTK4 / Libadwaita (RF-07) | pendiente |
@@ -43,6 +48,31 @@ El workspace compila **sin GTK** por defecto. La capa gráfica se compila con
 cargo check -p gdrive-sync-gui --features gui
 ```
 
+## Uso
+
+Primero hay que crear un cliente OAuth propio en Google Cloud y entregarle las
+credenciales a la aplicación: ver [docs/GOOGLE_SETUP.md](./docs/GOOGLE_SETUP.md).
+
+```bash
+# Vincular la cuenta (abre el navegador)
+cargo run -p gdrive-sync-cli -- auth login
+
+# Ver el estado sin exponer los tokens
+cargo run -p gdrive-sync-cli -- auth status
+
+# Listar archivos de la raíz de Drive
+cargo run -p gdrive-sync-cli -- ls --limit 20
+
+# Listar el contenido de una carpeta remota
+cargo run -p gdrive-sync-cli -- ls --remote documentos/fotos
+
+# Eliminar los tokens almacenados
+cargo run -p gdrive-sync-cli -- auth logout
+```
+
+Los tokens se guardan en el gestor de secretos del sistema (GNOME Keyring /
+KWallet) y nunca se escriben en disco ni en los logs.
+
 ## Estructura
 
 ```
@@ -55,6 +85,8 @@ crates/
   engine/    reconciliación, planificador y ejecutor
   gui/       GTK4 / Libadwaita (feature `gui`, Hito 4)
   cli/       binario `gdrive-sync`
+docs/
+  GOOGLE_SETUP.md       cómo crear el cliente OAuth propio
 scripts/
   bootstrap.sh          prepara el entorno
   check-duplicates.sh   falla ante duplicados de dependencias prohibidos
