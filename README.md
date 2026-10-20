@@ -73,4 +73,12 @@ cargo deny check
 
 ## Licencia
 
-MIT OR Apache-2.0 (pendiente de confirmar con el titular del proyecto).
+Este proyecto se distribuye bajo la **GNU General Public License, versión 3 o
+posterior** (`GPL-3.0-or-later`). El texto completo está en [LICENSE](./LICENSE).
+
+Es una licencia *copyleft*: cualquier distribución de una versión modificada
+debe publicarse bajo la misma licencia y ofrecer el código fuente.
+
+Las dependencias del proyecto son permisivas (MIT, Apache-2.0, ISC, BSD y
+similares), por lo que son compatibles con GPL-3. GTK4 y Libadwaita son
+LGPL-2.1-or-later, que permite el relicenciamiento bajo GPL-3.

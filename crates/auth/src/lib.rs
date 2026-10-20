@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Autenticación OAuth 2.0 con PKCE (RF-01) y persistencia de tokens (RF-02).
 //!
 //! El flujo completo, el listener loopback y el `TokenStore` sobre Secret

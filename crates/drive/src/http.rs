@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Construcción del cliente HTTP compartido.
 //!
 //! Todos los módulos que hablan con Google usan este cliente para que las

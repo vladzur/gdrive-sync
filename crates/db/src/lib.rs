@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 //! Persistencia local en SQLite (ADR-002).
 //!
 //! Contiene el esquema versionado (`sync_state`, `sync_roots`, `sync_nodes`,
